@@ -3,7 +3,26 @@
   "version": "0.0.1",
   "description": "a vue3 beta boilerplate",
   "main": "index.js",
+  "scripts": {
+    "clean": "rm -rf ./dist/**",
+    "build:stage": "cross-env NODE_ENV=production:stage yarn clean && webpack --config config/webpack.base.js"
+  },
   "repository": "git@github.com:Styx11/vue3-boilerplate.git",
   "author": "styx11 <1654630248@qq.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "cross-env": "^7.0.2",
+    "rimraf": "^3.0.2",
+    "webpack": "^5.2.0",
+    "webpack-cli": "^4.1.0"
+  },
+  "engines": {
+    "node": ">= 6.0.0",
+    "npm": ">= 3.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
 }
