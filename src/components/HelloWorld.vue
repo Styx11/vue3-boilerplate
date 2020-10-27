@@ -1,16 +1,33 @@
 <template>
 	<div class="hello">
-		<h1>{{ msg }}</h1>
+		<h1>{{ totalMessage }}</h1>
 	</div>
 </template>
 
-<script>
-import { defineComponent } from 'vue'
+<script lang='ts'>
+import { defineComponent, PropType, toRefs, computed } from 'vue'
+interface ComplexMessage
+{
+	message: string;
+	tsMessage: string;
+}
 
 export default defineComponent({
 	name: 'HelloWorld',
 	props: {
-		msg: String
+		msg: {
+			// 对 Prop 的额外断言，需要注意默认的 undefined
+			type: Object as PropType<ComplexMessage>,
+			required: true,
+		}
+	},
+	setup(props)
+	{
+		const { message, tsMessage } = toRefs(props.msg)
+		const totalMessage = computed(() => message.value + tsMessage.value)
+		return {
+			totalMessage,
+		}
 	}
 })
 </script>
