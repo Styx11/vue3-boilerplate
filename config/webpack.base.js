@@ -1,5 +1,6 @@
 const path = require('path');
 const { VueLoaderPlugin } = require('vue-loader');
+const tsImportPluginFactory = require('ts-import-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
@@ -16,19 +17,24 @@ module.exports = {
 		rules: [
 			{
 				test: /\.ts$/,
-				exclude: /vue\/src/,
+				exclude: [/node_modules/, /vue\/src/],
 				loader: 'ts-loader',
 				options: {
 					appendTsSuffixTo: [/\.vue$/],
 					transpileOnly: true,
-					// getCustomTransformers: () => ({
-					// 	before: [
-					// 		tsImportPluginFactory({
-					// 			libraryName: 'view-design',
-					// 			libraryDirectory: 'src/components',
-					// 		}),
-					// 	],
-					// }),
+					// ant-design-vue 按需加载
+					getCustomTransformers: () => ({
+						before: [
+							tsImportPluginFactory({
+								libraryName: 'ant-design-vue',
+								libraryDirectory: 'es',
+								style: 'css',
+							}),
+						],
+					}),
+					compilerOptions: {
+						module: 'es2015'
+					}
 				},
 			},
 			{
