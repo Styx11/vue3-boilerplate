@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
 	entry: {
-		app: path.resolve(__dirname, '../src/main.js'),
+		app: path.resolve(__dirname, '../src/main.ts'),
 	},
 	output: {
 		path: path.resolve(__dirname, '../dist/'),
@@ -14,6 +14,23 @@ module.exports = {
 	target: 'web',
 	module: {
 		rules: [
+			{
+				test: /\.ts$/,
+				exclude: /vue\/src/,
+				loader: 'ts-loader',
+				options: {
+					appendTsSuffixTo: [/\.vue$/],
+					transpileOnly: true,
+					// getCustomTransformers: () => ({
+					// 	before: [
+					// 		tsImportPluginFactory({
+					// 			libraryName: 'view-design',
+					// 			libraryDirectory: 'src/components',
+					// 		}),
+					// 	],
+					// }),
+				},
+			},
 			{
 				test: /\.vue$/,
 				use: 'vue-loader'
