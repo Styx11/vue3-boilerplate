@@ -1,13 +1,14 @@
-const path = require('path');
+const { resolve } = require('./utils');
 const merge = require('webpack-merge');
 const baseConfig = require('./webpack.base');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = merge(baseConfig, {
 	mode: "production",
 	devtool: '#source-map',
 	output: {
-		path: path.resolve(__dirname, '../dist/'),
+		path: resolve('dist/'),
 		filename: 'static/js/[name].[chunkhash].js',
 		chunkFilename: 'static/js/[id].[chunkhash].js',
 	},
@@ -38,14 +39,27 @@ module.exports = merge(baseConfig, {
 		namedChunks: true,
 
 		// 相当于 webpack.DefinePlugins 中设置 'process.env.NODE_ENV: JSON.stringifiy(...)'
-		nodeEnv: process.env.NODE_ENV || 'dev',
+		// issue: cross-env 设置环境变量不起作用
+		nodeEnv: 'production',
 	},
 	plugins: [
 		// 自动注入 html 文件依赖
 		new HtmlWebpackPlugin({
-			filename: path.resolve(__dirname, '../dist/index.html'),
-			template: path.resolve(__dirname, '../public/template.html'),
+			filename: resolve('dist/index.html'),
+			template: resolve('public/template.html'),
 			inject: true,
+		}),
+		// copy custom static assets
+		new CopyWebpackPlugin({
+			patterns: [
+				{
+					from: resolve('public'),
+					to: resolve('dist'),
+					globOptions: {
+						ignore: ['*.html']
+					}
+				}
+			]
 		}),
 	]
 });

@@ -1,14 +1,14 @@
-const path = require('path');
+const { resolve } = require('./utils');
 const { VueLoaderPlugin } = require('vue-loader');
 const tsImportPluginFactory = require('ts-import-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
 	entry: {
-		app: path.resolve(__dirname, '../src/main.ts'),
+		app: resolve('src/main.ts'),
 	},
 	output: {
-		path: path.resolve(__dirname, '../dist/'),
+		path: resolve('dist/'),
 		filename: '[name].js',
 		publicPath: '',
 	},
@@ -45,8 +45,8 @@ module.exports = {
 				test: /\.js$/,
 				loader: 'babel-loader',
 				include: [
-					path.resolve(__dirname, '../src'),
-					path.resolve(__dirname, '../test'),
+					resolve('src'),
+					resolve('test'),
 				],
 			},
 			{
