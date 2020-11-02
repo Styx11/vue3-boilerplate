@@ -6382,6 +6382,11 @@ vue@^3.0.2:
     "@vue/runtime-dom" "3.0.2"
     "@vue/shared" "3.0.2"
 
+vuex@^4.0.0-rc.1:
+  version "4.0.0-rc.1"
+  resolved "https://registry.npm.taobao.org/vuex/download/vuex-4.0.0-rc.1.tgz?cache=0&sync_timestamp=1604065479998&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fvuex%2Fdownload%2Fvuex-4.0.0-rc.1.tgz#160cd5957972a61c7c01ab585995b78e092a298d"
+  integrity sha1-FgzVlXlyphx8AatYWZW3jgkqKY0=
+
 warning@^4.0.0:
   version "4.0.3"
   resolved "https://registry.npm.taobao.org/warning/download/warning-4.0.3.tgz#16e9e077eb8a86d6af7d64aa1e05fd85b4678ca3"
