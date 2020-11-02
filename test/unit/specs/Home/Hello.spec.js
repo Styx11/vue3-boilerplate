@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import { mount } from '@vue/test-utils'
-import Hello from 'src/components/HelloWorld.vue'
+import Hello from 'src/views/Home/components/HelloWorld.vue';
 
 describe('HelloWorld.vue', () =>
 {
