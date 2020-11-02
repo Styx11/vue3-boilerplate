@@ -31,7 +31,7 @@ module.exports = merge(baseConfig, {
 		overlay: { warnings: false, errors: true },
 		publicPath: '/',
 		proxy: {},
-		// open: true,
+		open: true,
 		// quiet:c true, // necessary for FriendlyErrorsPlugin
 		watchOptions: {
 			poll: false,
