@@ -1,4 +1,3 @@
-const { platform } = require('os');
 const path = require('path');
 
 exports.resolve = dir =>

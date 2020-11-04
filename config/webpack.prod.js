@@ -1,5 +1,6 @@
 const { resolve } = require('./utils');
 const merge = require('webpack-merge');
+const webpack = require('webpack');
 const baseConfig = require('./webpack.base');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -60,6 +61,9 @@ module.exports = merge(baseConfig, {
 					}
 				}
 			]
+		}),
+		new webpack.DefinePlugin({
+			'process.env.NODE_ENV': 'production',
 		}),
 	]
 });

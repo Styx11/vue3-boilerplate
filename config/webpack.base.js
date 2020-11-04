@@ -23,6 +23,7 @@ module.exports = {
 					appendTsSuffixTo: [/\.vue$/],
 					transpileOnly: true,
 					// ant-design-vue 按需加载
+					// 因为 jest 的运行方式，需要在测试环境下设置 babel-plugin-import
 					getCustomTransformers: () => ({
 						before: [
 							tsImportPluginFactory({
@@ -49,6 +50,7 @@ module.exports = {
 					resolve('test'),
 				],
 			},
+
 			{
 				test: /\.css$/,
 				use: ['vue-style-loader', MiniCssExtractPlugin.loader, 'css-loader']
@@ -92,6 +94,7 @@ module.exports = {
 			// extra re-export somehow causes webpack to always invalidate the module
 			// on the first HMR update and causes the page to reload.
 			vue: '@vue/runtime-dom',
+			'@': resolve('src'),
 		},
 		// Add `.ts` and `.tsx` as a resolvable extension.
 		extensions: ['.ts', 'd.ts', '.tsx', '.js', '.vue'],

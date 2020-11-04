@@ -1,11 +1,11 @@
 <template>
 	<img alt="Vue logo" src="../../assets/logo.png" />
-	<HelloWorld :msg="msg" />
+	<Hello :msg="msg" />
 </template>
 
 <script lang='ts'>
 import { defineComponent } from 'vue'
-import HelloWorld from './components/HelloWorld.vue'
+import Hello from './components/Hello.vue'
 interface ComplexMessage
 {
 	message: string;
@@ -15,7 +15,7 @@ interface ComplexMessage
 export default defineComponent({
 	name: 'App',
 	components: {
-		HelloWorld
+		Hello
 	},
 	data()
 	{
